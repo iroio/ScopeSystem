@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletMovement
   _data: {fileID: 11400000, guid: dab9132b9a6444e4280059007abf75aa, type: 2}
-  _muzzle: {fileID: 0}
+  _drag: 0.5

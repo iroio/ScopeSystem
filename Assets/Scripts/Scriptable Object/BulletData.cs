@@ -16,4 +16,6 @@ public class BulletData : ScriptableObject
     public float muzzleVelocity;
     // 탄자무게
     public float projectileWeight;
+    // 최대 사거리
+    public float maxRange;
 }

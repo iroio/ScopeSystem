@@ -16,3 +16,4 @@ MonoBehaviour:
   prefab: {fileID: 1205536822576205710, guid: 008e5a3041cfccb42a59389cbdae77f9, type: 3}
   muzzleVelocity: 930
   projectileWeight: 8.3
+  maxRange: 3800
