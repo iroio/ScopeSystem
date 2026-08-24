@@ -4,21 +4,22 @@ using UnityEngine.InputSystem;
 
 public class BreathWave : MonoBehaviour
 {
+    [Header("Reference")]
     [SerializeField] ScopeController _scopeController;
-
     [SerializeField] Transform _scopePivot;
-
     [SerializeField] InputActionReference _holdBreath;
 
     Coroutine _holdBreathCoroutine;
-  
+
     // =================================================
     // Èçµé¸² »óÅÂ
     // =================================================
+    [Header("Breeath Options")]
     [SerializeField] float _breathSpeed = 2f;
     [SerializeField] float _breathPitch;
     [SerializeField] float _breathYaw;
 
+    [Space]
     [SerializeField] float _holdBreathTime = 5f;
     [SerializeField] float _breathMultiplier = 1f;
     [SerializeField] float _breathControlTime = 0.5f;

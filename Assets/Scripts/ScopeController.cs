@@ -8,6 +8,8 @@ public class ScopeController : MonoBehaviour
     // =================================================
     [Header("Reference")]
     [SerializeField] InputActionReference _zoomAction;
+    
+    [SerializeField] Animator _zoomAnimator;
 
     // =================================================
     // 스코프 관련 설정
@@ -15,7 +17,6 @@ public class ScopeController : MonoBehaviour
     [Header("Scope")]
     [SerializeField] Camera _scopeCamera;
     [SerializeField] GameObject _scopeUI;
-    [SerializeField] GameObject _scopeSide;
 
     // =================================================
     // 시야각 설정
@@ -50,7 +51,8 @@ public class ScopeController : MonoBehaviour
         }
         else
         {
-            StartScope();
+            _zoomAnimator.SetBool("isAim", true);
+            //StartScope();
         }
     }
 
@@ -63,7 +65,6 @@ public class ScopeController : MonoBehaviour
 
         _scopeCamera.enabled = true;
         _scopeUI.SetActive(true);
-        _scopeSide.SetActive(true);
     }
 
     // =================================================
@@ -75,7 +76,7 @@ public class ScopeController : MonoBehaviour
 
         _scopeCamera.enabled = false;
         _scopeUI.SetActive(false);
-        _scopeSide.SetActive(false);
+        _zoomAnimator.SetBool("isAim", false);
 
         _scopeCamera.fieldOfView = _curFOV;
     }
@@ -104,6 +105,8 @@ public class ScopeController : MonoBehaviour
     void Awake()
     {
         _curFOV = _maxFOV;
+
+        _zoomAnimator = GetComponentInChildren<Animator>();
     }
 
     void Update()

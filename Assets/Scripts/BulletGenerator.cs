@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 public class BulletGenerator : MonoBehaviour
 {
+    [Header("Reference")]
     [SerializeField] InputActionReference _fire;
     [SerializeField] Transform _bullet;
     [SerializeField] Transform _muzzle;
 
+    [Header("Data")]
     [SerializeField] BulletData _data;
 
     Transform _currentBullet;
