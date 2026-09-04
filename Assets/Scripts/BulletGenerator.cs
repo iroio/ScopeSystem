@@ -21,6 +21,29 @@ public class BulletGenerator : MonoBehaviour
         _currentBullet.GetComponent<BulletMovement>().InitBullet(this, direction);
     }
 
+
+    //========================================================= 
+    // 탄환 피격 체크 
+    // ========================================================= 
+    public void BulletHitCheck()
+    {
+        Debug.Log("BulletHitCheck 실행");
+
+        Vector3 origin = _muzzle.position;
+        Vector3 direction = _muzzle.forward;
+        if (Physics.Raycast(origin, direction, out RaycastHit hit))
+        {
+            float distance = hit.distance;
+            float flightTime = distance / _data.muzzleVelocity;
+            Debug.Log($"거리 : {distance:F1}m");
+            Debug.Log($"비행 시간 : {flightTime:F3}s");
+        }
+        else
+        {
+            Debug.Log("Raycast가 아무것도 맞추지 못함");
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +56,7 @@ public class BulletGenerator : MonoBehaviour
         if(_fire.action.WasPressedThisFrame())
         { 
             SpawnBullet();
+            BulletHitCheck();
         }
     }
 }

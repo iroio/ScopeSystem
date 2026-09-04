@@ -7,7 +7,6 @@ public class PlayerLook : MonoBehaviour
     // Reference
     // =================================================
     [Header("Reference")]
-    [SerializeField] Transform _player;
     [SerializeField] Transform _cameraPivot;
     [SerializeField] InputActionReference _lookAction;
    
@@ -17,7 +16,7 @@ public class PlayerLook : MonoBehaviour
     // 감도 설정
     // =================================================
     [Header("Setting")]
-    [SerializeField] [Range(0f, 0.1f)] float sensitivity = 0.05f;
+    [SerializeField] float sensitivity = 0.03f;
 
     // =================================================
     // 축

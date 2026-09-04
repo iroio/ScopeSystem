@@ -107,7 +107,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "Zoom",
+                    "name": "VP",
                     "type": "Value",
                     "id": "71733aff-93d2-40e2-9e6e-71d7681e9f00",
                     "expectedControlType": "Vector2",
@@ -542,7 +542,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Zoom",
+                    "action": "VP",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

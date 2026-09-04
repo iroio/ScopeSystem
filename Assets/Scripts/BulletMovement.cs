@@ -19,6 +19,9 @@ public class BulletMovement : MonoBehaviour
         _velocity = direction.normalized * _data.muzzleVelocity;
     }
 
+    // =========================================================
+    // CheckBulletState
+    // =========================================================
     public void CheckBulletState()
     {
         if (_bulletGenerator == null) return;

@@ -4,17 +4,20 @@ using UnityEngine.InputSystem;
 
 public class BreathWave : MonoBehaviour
 {
+    // =================================================
+    // Reference
+    // =================================================
     [Header("Reference")]
-    [SerializeField] ScopeController _scopeController;
     [SerializeField] Transform _scopePivot;
+    [SerializeField] ScopeController _scopeController;
     [SerializeField] InputActionReference _holdBreath;
 
     Coroutine _holdBreathCoroutine;
 
     // =================================================
-    // Èçµé¸² »óÅÂ
+    // Èçµé¸² Á¶Àý ¼öÄ¡
     // =================================================
-    [Header("Breeath Options")]
+    [Header("Breeath Wave Options")]
     [SerializeField] float _breathSpeed = 2f;
     [SerializeField] float _breathPitch;
     [SerializeField] float _breathYaw;
@@ -26,6 +29,9 @@ public class BreathWave : MonoBehaviour
 
     float _breathTime = 0f;
 
+    // =================================================
+    // ¼ûÂü±â °è»ê
+    // =================================================
     IEnumerator CoBreathContol()
     {
         float start = _breathMultiplier;
@@ -82,7 +88,7 @@ public class BreathWave : MonoBehaviour
     // =================================================
     // È£Èí Èçµé¸²
     // =================================================
-    public void Breath()
+    public void DefaultBreathWave()
     {
         if (!_scopeController.IsAiming)
         {
@@ -98,10 +104,12 @@ public class BreathWave : MonoBehaviour
         _scopePivot.localRotation = Quaternion.Euler(pitch, yaw, 0);
     }
 
-    // Update is called once per frame
+    // =================================================
+    // Update
+    // =================================================
     void Update()
     {
-        Breath();
+        DefaultBreathWave();
 
         if(_holdBreath.action.WasPressedThisFrame())
         {

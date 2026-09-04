@@ -7,7 +7,7 @@ public class ScopeController : MonoBehaviour
     // Reference
     // =================================================
     [Header("Reference")]
-    [SerializeField] InputActionReference _zoomAction;
+    [SerializeField] InputActionReference _VPAction;
     
     [SerializeField] Animator _zoomAnimator;
 
@@ -25,7 +25,7 @@ public class ScopeController : MonoBehaviour
     [SerializeField] float _curFOV = 15f;
     [SerializeField] float _maxFOV = 15f;
     [SerializeField] float _minFOV = 4f;
-    [SerializeField] float _scopeSensitivity = 0.5f;
+    [SerializeField] float _scopeSensitivity = 0.25f;
 
     // =================================================
     // 상태값
@@ -41,18 +41,17 @@ public class ScopeController : MonoBehaviour
     // =================================================
     public void OnAim(InputAction.CallbackContext ctx)
     {
-        // 토글 방식
+        //버튼을 누른 순간에만 실행
         if (!ctx.started)
             return;
 
-        if (_isAiming)
+        if (!_isAiming)
         {
-            EndScope();
+            _zoomAnimator.SetBool("isAim", true);
         }
         else
         {
-            _zoomAnimator.SetBool("isAim", true);
-            //StartScope();
+            EndScope();
         }
     }
 
@@ -84,9 +83,9 @@ public class ScopeController : MonoBehaviour
     // =================================================
     // 가변배율
     // =================================================
-    public void Zoom()
+    public void VariablePower()
     {
-        Vector2 scroll = _zoomAction.action.ReadValue<Vector2>();
+        Vector2 scroll = _VPAction.action.ReadValue<Vector2>();
 
         if(scroll.y > 0f)
         {
@@ -102,6 +101,9 @@ public class ScopeController : MonoBehaviour
         _scopeCamera.fieldOfView = _curFOV;
     }
 
+    // =================================================
+    // Awake
+    // =================================================
     void Awake()
     {
         _curFOV = _maxFOV;
@@ -109,11 +111,14 @@ public class ScopeController : MonoBehaviour
         _zoomAnimator = GetComponentInChildren<Animator>();
     }
 
+    // =================================================
+    // Update
+    // =================================================
     void Update()
     {
         if (!_isAiming)
             return;
 
-        Zoom();
+        VariablePower();
     }
 }
