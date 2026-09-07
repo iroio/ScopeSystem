@@ -7,7 +7,8 @@ public class ScopeController : MonoBehaviour
     // Reference
     // =================================================
     [Header("Reference")]
-    [SerializeField] InputActionReference _VPAction;
+    [SerializeField] InputActionReference _aimAction;
+    [SerializeField] InputActionReference _vpAction;
     
     [SerializeField] Animator _zoomAnimator;
 
@@ -41,10 +42,6 @@ public class ScopeController : MonoBehaviour
     // =================================================
     public void OnAim(InputAction.CallbackContext ctx)
     {
-        //버튼을 누른 순간에만 실행
-        if (!ctx.started)
-            return;
-
         if (!_isAiming)
         {
             _zoomAnimator.SetBool("isAim", true);
@@ -85,7 +82,7 @@ public class ScopeController : MonoBehaviour
     // =================================================
     public void VariablePower()
     {
-        Vector2 scroll = _VPAction.action.ReadValue<Vector2>();
+        Vector2 scroll = _vpAction.action.ReadValue<Vector2>();
 
         if(scroll.y > 0f)
         {
@@ -109,6 +106,28 @@ public class ScopeController : MonoBehaviour
         _curFOV = _maxFOV;
 
         _zoomAnimator = GetComponentInChildren<Animator>();
+    }
+
+    // =================================================
+    // OnEnable
+    // =================================================
+    void OnEnable()
+    {
+        _aimAction.action.started += OnAim;
+
+        _aimAction.action.Enable();
+        _vpAction.action.Enable();
+    }
+
+    // =================================================
+    // OnDisable
+    // =================================================
+    void OnDisable()
+    {
+        _aimAction.action.started -= OnAim;
+
+        _aimAction.action.Disable();
+        _vpAction.action.Disable();
     }
 
     // =================================================

@@ -19,8 +19,8 @@ public class BreathWave : MonoBehaviour
     // =================================================
     [Header("Breeath Wave Options")]
     [SerializeField] float _breathSpeed = 2f;
-    [SerializeField] float _breathPitch;
-    [SerializeField] float _breathYaw;
+    [SerializeField] float _breathPitch = 0.3f;
+    [SerializeField] float _breathYaw = 0.1f;
 
     [Space]
     [SerializeField] float _holdBreathTime = 5f;
@@ -68,7 +68,7 @@ public class BreathWave : MonoBehaviour
         start = _breathMultiplier;
         time = 0f;
 
-        // Èçµé¸² º¹±Í
+        // Èçµé¸² ¿ø·¡»óÅÂ º¹±¸
         while (time < _breathControlTime)
         {
             time += Time.deltaTime;
